@@ -1,0 +1,12 @@
+---
+title: VSA Basic Model
+author: Ross W. Gayler
+date: |
+  `r format(Sys.time(), "Updated on %A, %B %d, %Y %I:%M %p")`
+site: bookdown::bookdown_site
+link-citations: true
+bibliography: ./assets/refs.bib
+csl: ./assets/apa.csl
+---
+
+

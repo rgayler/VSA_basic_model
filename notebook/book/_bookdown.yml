@@ -1,0 +1,9 @@
+book_filename: notebook
+delete_merged_file: yes
+before_chapter_script: knitr-helpers.R
+rmd_files:
+- index.Rmd
+- 2022-04-03-design.md
+- 0000-00-00-references.md
+output_dir: docs
+new_session: yes
