@@ -22,6 +22,7 @@ In that case, don't forget to commit and push the resulting figure files, so the
 -->
 
 All the work is documented in the notebook[^1] at:
+<https://rgayler.github.io/VSA_basic_model/>
 
 ------------------------------------------------------------------------
 
@@ -60,6 +61,15 @@ Steps I used to make this project from scratch.
 
 9.  Build the notebook using the Build (Ctrl+B) shortcut in RStudio or
     `targets::tar_make()`.
+
+    -   After the first build only, create a `docs` directory with
+        contents `index.html` so the notebook is published on GitHub
+        Pages. `index.html` is a hard link to the rendered notebook
+        `notebook.html`.  
+        `mkdir docs`  
+        `ln notebook/book/docs/notebook.html docs/index.html`  
+        (*Investigate whether this can be done in the `notestar` setup
+        rather than as a separate shell step.*)
 
 10. View the notebook using `notestar::notebook_browse()`.
 
