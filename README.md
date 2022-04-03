@@ -28,6 +28,9 @@ All the work is documented in the notebook[^1] at:
 
 Steps I used to make this project from scratch.
 
+They assume that the notebook will be made publicly available via GitHub
+Pages.
+
 1.  Create a new project in RStudio with `renv` and a git repository.
 
 2.  Install `devtools` and `notestar`. This takes a while because `renv`
@@ -49,20 +52,22 @@ Steps I used to make this project from scratch.
     `notestar::use_notestar_references() # adds refs.bib and apa.csl`
 
 7.  Edit `_targets.R` to set the `title`, `author`, `bibliography`, and
-    `csl` values. Do *not* edit `notebook/index.Rmd` because it is
-    automatically created by `targets` from the values in `_targets.R`.
+    `csl` values.
+
+    -   Do *not* edit `notebook/index.Rmd` because it is automatically
+        created by `targets` from the values in `_targets.R`.
 
 8.  Create the first notebook entry.  
     `notestar::notebook_create_page(date = "2022-04-03", slug = "design")`
 
-    -   After the initial setup, this is where you create new notebook
-        entries and edit `_targets.R` and `R/functions.R` to implement
-        the empirical work to be reported in the notebook.
+    -   After the initial setup, this step is where you create new
+        notebook entries and edit `_targets.R` and `R/functions.R` to
+        implement the empirical work to be reported in the notebook.
 
 9.  Build the notebook using the Build (Ctrl+B) shortcut in RStudio or
     `targets::tar_make()`.
 
-    -   After the first build only, create a `docs` directory with
+    -   After the *first build only*, create a `docs` directory with
         contents `index.html` so the notebook is published on GitHub
         Pages. `index.html` is a hard link to the rendered notebook
         `notebook.html`.  
@@ -73,20 +78,21 @@ Steps I used to make this project from scratch.
 
 10. View the notebook using `notestar::notebook_browse()`.
 
-11. Commit all the files and then create the remote GitHub repository
-    with `usethis::use_github()`.
+11. Commit all the files and push the local git repository to the remote
+    GitHub repository.
 
-    -   If prompted to store your GitHub PAT in `.Renviron` - [*don’t do
-        it*](https://usethis.r-lib.org/articles/git-credentials.html#tldr-use-https-2fa-and-a-github-personal-access-token).
+    -   On the *first time only* you can create the remote GitHub
+        repository with `usethis::use_github()`.
 
-12. Added link to repository to index.Rmd.
+        -   If prompted to store your GitHub PAT in `.Renviron` -
+            [*don’t do
+            it*](https://usethis.r-lib.org/articles/git-credentials.html#tldr-use-https-2fa-and-a-github-personal-access-token).
 
-13. Copied the `notebook.html` file into `docs/index.html` so that it
-    could be previewed with Github Pages.
+    -   On subsequent occasions just commit and push, as usual.
 
-Iterating on steps 5–10 is the main flow for the notebook. We set up
-data and modeling things in `_targets` and explore/report them in
-notebook entries.
+Iterating on steps 8–11 is the main flow for the notebook. We set up
+data and modeling things in `_targets` and `R/functions.R`, then explore
+and report them in notebook entries.
 
 ------------------------------------------------------------------------
 
