@@ -84,6 +84,9 @@ Steps I used to make this project from scratch.
 11. Commit all the files and then create the remote GitHub repository
     with `usethis::use_github()`.
 
+    -   If prompted to store your GitHub PAT in `.Renviron` - [*don't do
+        it*](https://usethis.r-lib.org/articles/git-credentials.html#tldr-use-https-2fa-and-a-github-personal-access-token).
+
 12. Added link to repository to index.Rmd.
 
 13. Copied the `notebook.html` file into `docs/index.html` so that it

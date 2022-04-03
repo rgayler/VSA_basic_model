@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Ross W. Gayler" />
+  <title>VSA Basic Model</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+
+  <style type="text/css">@charset "UTF-8";
+body {
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+line-height: 1.4;
+max-width: 800px;
+margin: 20px auto;
+padding: 0 10px;
+color: #363636;
+background: #ffffff;
+text-rendering: optimizeLegibility;
+}
+button, input, textarea {
+transition: background-color 0.1s linear, border-color 0.1s linear, color 0.1s linear, box-shadow 0.1s linear, transform 0.1s ease;
+}
+h1 {
+font-size: 2.2em;
+margin-top: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-bottom: 12px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+color: #000000;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+th {
+font-weight: 600;
+}
+blockquote {
+border-left: 4px solid #0096bfab;
+margin: 1.5em 0em;
+padding: 0.5em 1em;
+font-style: italic;
+}
+blockquote > footer {
+margin-top: 10px;
+font-style: normal;
+}
+blockquote cite {
+font-style: normal;
+}
+address {
+font-style: normal;
+}
+a[href^='mailto']::before {
+content: '📧 ';
+}
+a[href^='tel']::before {
+content: '📞 ';
+}
+a[href^='sms']::before {
+content: '💬 ';
+}
+button,
+input[type='submit'],
+input[type='button'],
+input[type='checkbox'] {
+cursor: pointer;
+}
+input:not([type='checkbox']):not([type='radio']),
+select {
+display: block;
+}
+input, select, button, textarea {
+color: #000000;
+background-color: #efefef;
+font-family: inherit;
+font-size: inherit;
+margin-right: 6px;
+margin-bottom: 6px;
+padding: 10px;
+border: none;
+border-radius: 6px;
+outline: none;
+}
+input:not([type='checkbox']):not([type='radio']),
+select, button, textarea {
+-webkit-appearance: none;
+}
+textarea {
+margin-right: 0;
+width: 100%;
+box-sizing: border-box;
+resize: vertical;
+}
+button, input[type='submit'], input[type='button'] {
+padding-right: 30px;
+padding-left: 30px;
+}
+button:hover,
+input[type='submit']:hover,
+input[type='button']:hover {
+background: #dddddd;
+}
+input:focus,
+select:focus,
+button:focus,
+textarea:focus {
+box-shadow: 0 0 0 2px #0096bfab;
+}
+input[type='checkbox']:active,
+input[type='radio']:active,
+input[type='submit']:active,
+input[type='button']:active,
+button:active {
+transform: translateY(2px);
+}
+input:disabled,
+select:disabled,
+button:disabled,
+textarea:disabled {
+cursor: not-allowed;
+opacity: .5;
+}
+::-webkit-input-placeholder {
+color: #949494;
+}
+:-ms-input-placeholder {
+color: #949494;
+}
+::-ms-input-placeholder {
+color: #949494;
+}
+::placeholder {
+color: #949494;
+}
+a {
+text-decoration: none;
+color: #0076d1;
+}
+a:hover {
+text-decoration: underline;
+}
+code, kbd {
+background: #efefef;
+color: #000000;
+padding: 5px;
+border-radius: 6px;
+}
+pre > code {
+padding: 10px;
+display: block;
+overflow-x: auto;
+}
+img {
+max-width: 100%;
+}
+hr {
+border: none;
+border-top: 1px solid #dbdbdb;
+}
+table {
+border-collapse: collapse;
+margin-bottom: 10px;
+width: 100%;
+}
+td, th {
+padding: 6px;
+text-align: left;
+}
+th {
+border-bottom: 1px solid #dbdbdb;
+}
+tbody tr:nth-child(even) {
+background-color: #efefef;
+}
+::-webkit-scrollbar {
+height: 10px;
+width: 10px;
+}
+::-webkit-scrollbar-track {
+background: #efefef;
+border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+background: #d5d5d5;
+border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #c4c4c4;
+}
+
+</style>
+</head>
+<body>
+<style type="text/css" charset="utf-8">
+main {
+  max-width: 48em;
+  margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  main {
+    max-width: 100%;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+</style>
+
+
+<main>
+<header>
+<h1 id="title" class="toc-ignore">VSA Basic Model</h1>
+<p id="date"><p>Updated on Sunday, April 03, 2022 07:17 PM</p></p>
+<p id="author">Ross W. Gayler</p>
+
+</header>
+<ul>
+<li><a href="#design-notes">2022-04-03 Design notes</a>
+<ul>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#design">Design</a></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+
+<!--chapter:end:index.Rmd-->
+<!--- Timestamp to trigger book rebuilds: 2022-04-03 19:17:11 --->
+<h2 id="design-notes">2022-04-03 Design notes</h2>
+<p><small>Source: <code>2022-04-03-design.Rmd</code></small></p>
+<p>This entry contains the VBM1 design notes.</p>
+<p>As my design thinking evolves over the course of the project the
+notes here will be modified so that this note always reflects my most
+recent position. Consequently the head date shouldn’t be taken too
+seriously.</p>
+<h3 id="objectives">Objectives</h3>
+<p>The purpose of the VSA Basic Model project is to develop a basic VSA
+model (VBM1), as an alternative to HRR, FHRR, BSC, MAP, etc., which is
+conceptually simple as possible, and relatively cheap computationally.
+The motivation for this is that VBM1 would be the default VSA model for
+empirical projects, that is, it would be the VSA equivalent of the
+geneticist’s fruit fly.</p>
+<h3 id="design">Design</h3>
+<!--chapter:end:2022-04-03-design.md-->
+<!-- Chapters/posts are collated in reverse chronological order so  -->
+<!-- this last one is a dummy entry to tell bookdown where to drop  -->
+<!-- the references. -->
+<h2 id="references">References</h2>
+<!--chapter:end:0000-00-00-references.md-->
+
+</main>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+  document.getElementsByTagName("head")[0].appendChild(script);
+});
+</script>
+
+</body>
+</html>
