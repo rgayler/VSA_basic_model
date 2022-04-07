@@ -18,8 +18,6 @@ editor_options:
 
 This entry contains the VBM1 design notes.
 
-WIP testing
-
 As my design thinking evolves over the course of the project the notes
 here will be modified so that this note always reflects my most recent
 position. Consequently the head date shouldn't be taken too seriously.
@@ -44,11 +42,9 @@ design choices and the reasoning leading to those choices.
 
 xx
 
-<div>
-
-Vector space decison
-
-</div>
+::: {style="background: yellow"}
+Vector space decisions
+:::
 
 #### Locality
 
@@ -58,28 +54,22 @@ xx
 
 xx
 
-<div>
-
-Permutation operator decison
-
-</div>
+::: {style="background: yellow"}
+Permutation operator decision
+:::
 
 #### Binding
 
 xx
 
-<div>
-
-Binding operator decison
-
-</div>
+::: {style="background: yellow"}
+Binding operator decision
+:::
 
 #### Bundling
 
 xx
 
-<div>
-
-Bundling operator decison
-
-</div>
+::: {style="background: yellow"}
+Bundling operator decision
+:::
