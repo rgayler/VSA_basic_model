@@ -65,5 +65,15 @@ targets_notebook <- list(
 
 list(
   targets_main,
-  targets_notebook
+  targets_notebook,
+  # link rendered notebook to ./docs/index.html for GitHub Pages
+  tar_target(
+    publish_to_github_pages,
+    {
+      if(fs::dir_exists("docs")) fs::dir_delete("docs")
+      fs::dir_create("docs")
+      fs::link_create(tar_read(notebook), "docs/index.html", symbolic = FALSE)
+    },
+    format = "file"
+  )
 )

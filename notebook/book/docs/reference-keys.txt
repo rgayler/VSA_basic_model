@@ -1,4 +1,9 @@
 design-notes
 objectives
 design
+vector-space
+locality
+permutation
+binding
+bundling
 references
