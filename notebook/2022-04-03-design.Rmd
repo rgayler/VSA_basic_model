@@ -26,7 +26,7 @@ position. Consequently the head date shouldn't be taken too seriously.
 
 The purpose of the VSA Basic Model project is to develop a basic VSA
 model (VBM1), as an alternative to HRR, FHRR, BSC, MAP, etc.
-[@kleykoSurveyHyperdimensionalComputing2021], which is conceptually
+[@kleykoSurveyHyperdimensionalComputing2021], which is conceptually as
 simple as possible, and relatively cheap computationally. The motivation
 for this is that VBM1 would be the default VSA model for empirical
 projects, that is, it would be the VSA equivalent of the geneticist's
@@ -34,13 +34,33 @@ fruit fly.
 
 ### Design
 
-Design of a VSA model consists of determining the vector space and
+Design of a VSA model consists of determining a vector space and
 defining the operators on that vector space. This section documents the
 design choices and the reasoning leading to those choices.
 
-#### Vector space
+#### Scalar field of the vector space
 
-xx
+This section is probably severely hampered by my lack of mathematical
+skills, but I can only work with what I've got. VSA models are treated
+as [vector spaces](https://en.wikipedia.org/wiki/Vector_space) and
+operators on that vector space. A [vector space is defined
+as](https://en.wikipedia.org/wiki/Vector_space#Notation_and_definition)
+a set $V$ of *vectors* and a field $F$ of *scalars,* and two binary
+operators, vector addition (bundling) and scalar multiplication, that
+satisfy eight axioms.
+
+The vector spaces of VSA models have extra requirements that make them
+special cases of vector spaces. Orthogonality of vectors plays a major
+role in VSA systems, so the concept of angles between vectors must be
+meaningful - so the vector spaces must be [inner product
+spaces](https://en.wikipedia.org/wiki/Vector_space#Normed_vector_spaces_and_inner_product_spaces).
+Additionally, VSA models also have a multiplication operator between
+vectors (binding), making them [algebras over
+fields](https://en.wikipedia.org/wiki/Vector_space#Algebras_over_fields).
+Finally, VSA models also have a family of unary permutation operators
+(braiding) - I have no idea of the mathematical consequences of that.
+However, all these extra features are not relevant to this section,
+which is only concerned with the scalar field of the vector space.
 
 ::: {style="background: yellow"}
 Vector space decisions
