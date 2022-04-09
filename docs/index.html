@@ -237,7 +237,7 @@ img {
 <main>
 <header>
 <h1 id="title" class="toc-ignore">VSA Basic Model</h1>
-<p id="date"><p>Updated on Thursday, April 07, 2022 08:06 PM</p></p>
+<p id="date"><p>Updated on Saturday, April 09, 2022 11:54 PM</p></p>
 <p id="author">Ross W. Gayler</p>
 
 </header>
@@ -251,7 +251,7 @@ img {
 </ul>
 
 <!--chapter:end:index.Rmd-->
-<!--- Timestamp to trigger book rebuilds: 2022-04-07 20:06:18 --->
+<!--- Timestamp to trigger book rebuilds: 2022-04-09 23:54:11 --->
 <h2 id="design-notes">2022-04-03 Design notes</h2>
 <p><small>Source: <code>2022-04-03-design.Rmd</code></small></p>
 <p>This entry contains the VBM1 design notes.</p>
@@ -262,36 +262,129 @@ seriously.</p>
 <h3 id="objectives">Objectives</h3>
 <p>The purpose of the VSA Basic Model project is to develop a basic VSA
 model (VBM1), as an alternative to HRR, FHRR, BSC, MAP, etc. <span class="citation" data-cites="kleykoSurveyHyperdimensionalComputing2021">(<a href="#ref-kleykoSurveyHyperdimensionalComputing2021" role="doc-biblioref">Kleyko et al., 2021</a>)</span>, which is
-conceptually simple as possible, and relatively cheap computationally.
-The motivation for this is that VBM1 would be the default VSA model for
-empirical projects, that is, it would be the VSA equivalent of the
-geneticist’s fruit fly.</p>
+conceptually as simple as possible, and relatively cheap
+computationally. The motivation for this is that VBM1 would be the
+default VSA model for empirical projects, that is, it would be the VSA
+equivalent of the geneticist’s fruit fly.</p>
 <h3 id="design">Design</h3>
-<p>Design of a VSA model consists of determining the vector space and
+<p>Design of a VSA model consists of determining a vector space and
 defining the operators on that vector space. This section documents the
 design choices and the reasoning leading to those choices.</p>
-<h4 id="vector-space">Vector space</h4>
-<p>xx</p>
+<h4 id="data-type-of-the-scalar-field-of-the-vector-space">Data type of
+the scalar field of the vector space</h4>
+<p>This section is probably severely hampered by my lack of mathematical
+skills, but I can only work with what I’ve got. VSA models are treated
+as <a href="https://en.wikipedia.org/wiki/Vector_space">vector
+spaces</a> and operators on that vector space. A <a href="https://en.wikipedia.org/wiki/Vector_space#Notation_and_definition">vector
+space is defined as</a> a set <span class="math inline">\(V\)</span> of
+<em>vectors</em> and a field <span class="math inline">\(F\)</span> of
+<em>scalars,</em> and two binary operators, vector addition (bundling)
+and scalar multiplication, that satisfy eight axioms.</p>
+<p>The vector spaces of VSA models have extra requirements that make
+them special cases of vector spaces. Orthogonality of vectors plays a
+major role in VSA systems, so the concept of angles between vectors must
+be meaningful - so the vector spaces must be <a href="https://en.wikipedia.org/wiki/Vector_space#Normed_vector_spaces_and_inner_product_spaces">inner
+product spaces</a>. Additionally, VSA models also have a multiplication
+operator between vectors (binding), making them <a href="https://en.wikipedia.org/wiki/Vector_space#Algebras_over_fields">algebras
+over fields</a>. Finally, VSA models also have a family of unary
+permutation operators (braiding) - I have no idea of the mathematical
+consequences of that. However, all these extra features are not relevant
+to this section, which is only concerned with the scalar field of the
+vector space.</p>
+<p>A <span class="math inline">\(d\)</span>-dimensional vector can be
+represented as a <span class="math inline">\(d\)</span>-<a href="https://en.wikipedia.org/wiki/Tuple">tuple</a> of <a href="https://en.wikipedia.org/wiki/Scalar_(mathematics)">scalar</a>
+values from some <a href="https://en.wikipedia.org/wiki/Field_(mathematics)">field</a>. This
+is a <a href="https://en.wikipedia.org/wiki/Vector_space#Basis_and_dimension">coordinate
+representation</a> of the vector. In the standard interpretation of VSA
+models as neural networks the elements of the tuple correspond to
+outputs of neural units. This coordinate based representation
+corresponds to the implementation level view of the vectors - it is how
+the hardware “sees” the vectors. The computational level view is all
+about the relationships between the vectors, that is how they are
+derived from each other by the available operations. At the
+computational level the specific coordinates are not relevant, the
+computational level takes a <a href="https://en.wikipedia.org/wiki/Coordinate-free">coordinate-free</a>
+view of the vectors. That is, the set of relationships between vectors
+can be instantiated by many different coordinate representations.</p>
+<p>The implementation view of a vector is a tuple of scalar values from
+some <a href="https://en.wikipedia.org/wiki/Field_(mathematics)">field</a>, so
+choosing the field selects the basic properties of the vector space, and
+sets the types of the inputs and outputs of the vector space operators.
+A <a href="https://en.wikipedia.org/wiki/Field_(mathematics)#Definition">field
+is defined as</a> a set of values and two binary operators on those
+values (addition and multiplication), satisfying six axioms.</p>
+<p>The (probably) most widely known fields, which are commonly used in
+VSA models, are the real numbers (<span class="math inline">\(\mathbb{R}\)</span>) and the complex numbers
+(<span class="math inline">\(\mathbb{C}\)</span>). It’s worth
+emphasizing that the field consists of both the set of values and the
+mathematical operators. When we implement VSA models we define may
+define our own VSA operators (typically operating on the <em>computer
+data types</em> of real or complex numbers). If the VSA operators we
+define are not identical to the mathematical operators then the
+combination of those VSA operators and the computer data types they
+operate on will <em>not</em> be implementations of (<span class="math inline">\(\mathbb{R}\)</span>) and (<span class="math inline">\(\mathbb{C}\)</span>) and might not even implement
+fields.</p>
+<p>The point is, that problem of designing a VSA model is essentially
+the problem of trying to design a mathematical entity (such as, an
+algebra over a field) that has desirable behavioural properties
+(i.e. the axioms satisfied). We, don’t yet know the best (or minimum
+acceptable) mathematical properties for a VSA model appear to mostly be
+algebras over inner product spaces.</p>
+<p>Having said all that, the process of designing a VSA model doesn’t
+have to be driven from the mathematical end by defining the desired
+mathematical properties and then designing an implementation. It can
+also be approached as a programming problem - choosing the data type of
+the elements of the <span class="math inline">\(d\)</span>-tuples, then
+designing operators on those tuples to have the desired mathematical
+properties. This is the approach I will be taking.</p>
+<p>Another point to remember about physical realisations of VSA models
+is that they are approximations to the mathematical abstractions. A
+mathematical model may use real numbers (<span class="math inline">\(\mathbb{R}\)</span>), but the <code>real</code>
+computer data type has a limited range and a limited precision.
+Similarly, a neurophysiological implementation may be in terms of neural
+firing rates or spike timing, which will have limited ranges (firing
+rates must be non-negative and will have some maximum) and limited
+precision due to various noise processes. The modeller may move between
+viewing the implementation as an approximate realisation of the
+mathematical ideal, or the mathematical abstraction as an approximation
+to the reality of the physical implementation. Regardless of whether the
+mathematical model or the physical implementation is viewed as the
+approximation, the important point is that the desired behaviour should
+be displayed over a sufficiently wide range of conditions to be
+useful.</p>
+<p><span class="math inline">\(\otimes \oplus \odot \not\sim \not\perp
+\overset{\approx}{\perp}\)</span> vhjvhjvhj</p>
 <div style="background: yellow">
 <p>Vector space decisions</p>
 </div>
 <h4 id="locality">Locality</h4>
+<h5 id="label-and-support-interpretation">Label and support
+interpretation</h5>
+<h5 id="parallel-local-values-as-approximation-to-latent-vector">Parallel
+local values as approximation to latent vector</h5>
 <p>xx</p>
+<h4 id="normalisation">Normalisation</h4>
+<h5 id="global-normalisation">Global normalisation</h5>
+<h5 id="local-normalisation">Local normalisation</h5>
+<h5 id="section"></h5>
 <h4 id="permutation">Permutation</h4>
 <p>xx</p>
 <div style="background: yellow">
 <p>Permutation operator decision</p>
+</div>
+<h4 id="bundling">Bundling</h4>
+<h5 id="additive-bundling">Additive bundling</h5>
+<h5 id="sampling-bundling">Sampling bundling</h5>
+<p>xx</p>
+<div style="background: yellow">
+<p>Bundling operator decision</p>
 </div>
 <h4 id="binding">Binding</h4>
 <p>xx</p>
 <div style="background: yellow">
 <p>Binding operator decision</p>
 </div>
-<h4 id="bundling">Bundling</h4>
-<p>xx</p>
-<div style="background: yellow">
-<p>Bundling operator decision</p>
-</div>
+<h4 id="section-1"></h4>
 <!--chapter:end:2022-04-03-design.md-->
 <!-- Chapters/posts are collated in reverse chronological order so  -->
 <!-- this last one is a dummy entry to tell bookdown where to drop  -->
