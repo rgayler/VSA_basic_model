@@ -32,7 +32,7 @@ targets_notebook <- list(
     # notestar::use_notestar_references() will provide these files
     # in the notebook folder. then uncomment these lines and modify
     # files as needed:
-    bibliography = "refs.bib",
+    bibliography = "references.bib",
     csl = "apa.csl"
   ),
   tar_notebook_pages(),

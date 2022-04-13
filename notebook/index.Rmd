@@ -5,7 +5,7 @@ date: |
   `r knitr::inline_expr('format(Sys.time(), "Updated on %A, %B %d, %Y %I:%M %p")')`
 site: bookdown::bookdown_site
 link-citations: true
-bibliography: ./assets/refs.bib
+bibliography: ./assets/references.bib
 csl: ./assets/apa.csl
 ---
 

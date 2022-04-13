@@ -237,7 +237,7 @@ img {
 <main>
 <header>
 <h1 id="title" class="toc-ignore">VSA Basic Model</h1>
-<p id="date"><p>Updated on Saturday, April 09, 2022 11:54 PM</p></p>
+<p id="date"><p>Updated on Wednesday, April 13, 2022 12:13 PM</p></p>
 <p id="author">Ross W. Gayler</p>
 
 </header>
@@ -251,7 +251,7 @@ img {
 </ul>
 
 <!--chapter:end:index.Rmd-->
-<!--- Timestamp to trigger book rebuilds: 2022-04-09 23:54:11 --->
+<!--- Timestamp to trigger book rebuilds: 2022-04-13 12:13:12 --->
 <h2 id="design-notes">2022-04-03 Design notes</h2>
 <p><small>Source: <code>2022-04-03-design.Rmd</code></small></p>
 <p>This entry contains the VBM1 design notes.</p>
@@ -352,8 +352,34 @@ mathematical model or the physical implementation is viewed as the
 approximation, the important point is that the desired behaviour should
 be displayed over a sufficiently wide range of conditions to be
 useful.</p>
-<p><span class="math inline">\(\otimes \oplus \odot \not\sim \not\perp
-\overset{\approx}{\perp}\)</span> vhjvhjvhj</p>
+<p>It is important to emphasize that choice of the scalar data type does
+<em>not</em> uniquely determine the properties of the VSA system. It is
+the combination of the operators and the scalar type that matters, and
+apparently different models can be mathematically equivalent. For
+example, Plate <span class="citation" data-cites="plateDistributedRepresentationsNested1994">(<a href="#ref-plateDistributedRepresentationsNested1994" role="doc-biblioref">1994, Chapters 3 &amp; 4</a>)</span> introduced a
+real valued VSA model (HRR) with circular convolution as the binding
+operator, and a complex valued VSA model (FHRR) with elementwise
+multiplication as the binding operator. The complex valued model was
+introduced as a computational speed-up of the real valued model <span class="citation" data-cites="plateDistributedRepresentationsNested1994">(<a href="#ref-plateDistributedRepresentationsNested1994" role="doc-biblioref">1994, sec. 3.6.2</a>)</span>and is mathematically
+equivalent. Although Plate <span class="citation" data-cites="plateDistributedRepresentationsNested1994">(<a href="#ref-plateDistributedRepresentationsNested1994" role="doc-biblioref">1994, p. 103</a>)</span> refers to the real valued
+model as the “standard system” he concludes that complex valued model is
+at least slightly superior. In fact, the computational cost of the
+complex valued model is dominated by the transformation from real valued
+model. If we accept that the two models are mathematically equivalent,
+then why not work entirely with the complex valued model and avoid the
+cost of the transformations between real and complex values?</p>
+<p>Complex valued neural networks (also called phasor networks) have
+been discussed since at least as early as the late 1980s <span class="citation" data-cites="noestPhasorNeuralNetworks1987">(<a href="#ref-noestPhasorNeuralNetworks1987" role="doc-biblioref">Noest,
+1987</a>)</span>. These very earliest mentions suggested implementation
+of complex values by physical (optical) resonators. More recently <span class="citation" data-cites="fradyRobustComputationRhythmic2019">(<a href="#ref-fradyRobustComputationRhythmic2019" role="doc-biblioref">Frady &amp; Sommer, 2019</a>)</span> it has been
+shown that complex values can be naturally implemented in terms of
+neural spike timing, which is both neurobiologically interesting and
+advantageous for <a href="https://en.wikipedia.org/wiki/Neuromorphic_engineering">neuromorphic
+computing</a>.</p>
+<p>xxxxxxxxxxxxxxxxxxxxxx</p>
+<p><span class="math inline">\(\otimes \otimes_{vbm1} \oplus \odot
+\not\sim \not\perp \overset{\approx}{\perp} \perp^\approx\)</span>
+vhjvhjvhj</p>
 <div style="background: yellow">
 <p>Vector space decisions</p>
 </div>
@@ -392,12 +418,28 @@ local values as approximation to latent vector</h5>
 <h2 id="references">References</h2>
 <!--chapter:end:0000-00-00-references.md-->
 <div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
+<div id="ref-fradyRobustComputationRhythmic2019" class="csl-entry" role="doc-biblioentry">
+Frady, E. P., &amp; Sommer, F. T. (2019). Robust computation with
+rhythmic spike patterns. <em>Proceedings of the National Academy of
+Sciences</em>, <em>116</em>(36), 18050–18059. <a href="https://doi.org/10.1073/pnas.1902653116">https://doi.org/10.1073/pnas.1902653116</a>
+</div>
 <div id="ref-kleykoSurveyHyperdimensionalComputing2021" class="csl-entry" role="doc-biblioentry">
 Kleyko, D., Rachkovskij, D. A., Osipov, E., &amp; Rahimi, A. (2021). A
 <span>Survey</span> on <span>Hyperdimensional Computing</span> aka
 <span>Vector Symbolic Architectures</span>, <span>Part I</span>:
 <span>Models</span> and <span>Data Transformations</span>.
 <em>arXiv:2111.06077 [Cs]</em>. <a href="https://arxiv.org/abs/2111.06077">https://arxiv.org/abs/2111.06077</a>
+</div>
+<div id="ref-noestPhasorNeuralNetworks1987" class="csl-entry" role="doc-biblioentry">
+Noest, J. (1987). Phasor neural networks. <em>Proceedings of the
+<span>IEEE Conference</span> on <span>Neural Information Processing
+Systems</span>, <span>Natural</span> and <span>Synthetic</span>,</em>
+584–591.
+</div>
+<div id="ref-plateDistributedRepresentationsNested1994" class="csl-entry" role="doc-biblioentry">
+Plate, T. A. (1994). <em>Distributed <span>Representations</span> and
+<span>Nested Compositional Structure</span></em> [Doctor of Philosophy].
+University of Toronto.
 </div>
 </div>
 

@@ -2,10 +2,10 @@
 title: VSA Basic Model
 author: Ross W. Gayler
 date: |
-  Updated on Saturday, April 09, 2022 11:54 PM
+  Updated on Wednesday, April 13, 2022 12:13 PM
 site: bookdown::bookdown_site
 link-citations: true
-bibliography: ./assets/refs.bib
+bibliography: ./assets/references.bib
 csl: ./assets/apa.csl
 ---
 
