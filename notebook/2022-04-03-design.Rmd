@@ -147,7 +147,8 @@ valued model is at least slightly superior. In fact, the computational
 cost of the complex valued model is dominated by the transformation from
 real valued model. If we accept that the two models are mathematically
 equivalent, then why not work entirely with the complex valued model and
-avoid the cost of the transformations between real and complex values?
+avoid the cost of the transformations between real and complex values
+[@plateDistributedRepresentationsNested1994 page 101]?
 
 Complex valued neural networks (also called phasor networks) have been
 discussed since at least as early as the late 1980s
@@ -159,7 +160,17 @@ timing, which is both neurobiologically interesting and advantageous for
 [neuromorphic
 computing](https://en.wikipedia.org/wiki/Neuromorphic_engineering).
 
-xxxxxxxxxxxxxxxxxxxxxx
+@schlegelComparisonVectorSymbolic2021 [Table 1] lists the scalar field
+type for a range of better known VSA models. Only one model (FHRR) is
+shown as using complex numbers. The rest of the models are shown as
+using real numbers or subsets of the real numbers (integers,
+$\{-1, 1\}$, $\{0, 1\}$). However, many of these can be interpreted as
+functionally equivalent to complex valued scalars. Complex values, which
+can be interpreted as two dimensional vectors in rectangular
+coordinates, can be reinterpreted as an angle and magnitude in polar
+coordinates.
+
+xxxxxxxxxx
 
 $\otimes \otimes_{vbm1} \oplus \odot \not\sim \not\perp \overset{\approx}{\perp} \perp^\approx$
 vhjvhjvhj
