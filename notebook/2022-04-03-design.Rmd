@@ -170,10 +170,7 @@ can be interpreted as two dimensional vectors in rectangular
 coordinates, can be reinterpreted as an angle and magnitude in polar
 coordinates.
 
-xxxxxxxxxx
-
-$\otimes \otimes_{vbm1} \oplus \odot \not\sim \not\perp \overset{\approx}{\perp} \perp^\approx$
-vhjvhjvhj
+CONTINUE FROM HERE
 
 ::: {style="background: yellow"}
 Vector space decisions

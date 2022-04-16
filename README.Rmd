@@ -59,21 +59,24 @@ Pages.
 3.  Create an appropriate license.  
     `usethis::use_ccby_license()`.
 
-    -   `usethis` should have been automatically installed as a
-        dependency of `notestar`.
+    -   `usethis` was automatically installed as a dependency of
+        `notestar`.
 
 4.  Create `README.Rmd` to start documenting these steps.  
     `usethis::use_readme_rmd()`
 
     -   If you're not planning to create figures in `README.Rmd` then
         you should delete the R code chunks. This will stop the
-        directory `README_files` being created unnecessarily.
+        directory `README_files` being created unnecessarily when
+        `README.Rmd` is knitted.
 
 5.  Create the `notestar` directory structure and files.  
     `notestar::use_notestar()`
 
-    -   Optionally, edit `config.yml` if you want to change the file
-        locations.
+    -   Optionally, use the arguments to use `use_notestar()` to change
+        the locations of the Rmd files and rendered files,
+        -   These locations are written to `config.yml`, so don't edit
+            that file.
 
 6.  Configure `notestar` to use a Makefile.  
     `notestar:::use_notestar_makefile()`
@@ -87,21 +90,32 @@ Pages.
 
     -   **WARNING** If you use the RStudio visual editor citation tool,
         the bibliography name in the citation tool defaults to
-        `references.bib`. You *must* change the bibliography name in the
-        citation tool to `refs.bib`.
+        `references.bib` *every time* you open the citation tool and
+        there is no option to change this default in RStudio. If you use
+        the `notestar` default bibliography name (`refs.bib)` you will
+        have to remember to change the bibliography name in the citation
+        tool to `refs.bib` *every time* you open the citation tool. This
+        exceptionally tedious, so you're better off accepting the
+        inevitable and renaming `refs.bib` to `references.bib`.  
+        `$ mv notebook/refs.bib notebook/references.bib`
     -   **WARNING** If you use the RStudio visual editor citation tool
         to add a citation to a notebook page `.Rmd` file, the citation
         tool will add a `bibliography:` line to the YAML header in that
-        file. This will cause the `notestar` document build to fail. You
-        *must* delete the `bibliography:` line from the YAML header of
-        the notebook page `.Rmd` file.
+        file. In older versions of `notestar`, this will cause the
+        `notestar` document build to fail. You *must* delete the
+        `bibliography:` line from the YAML header of the notebook page
+        `.Rmd` file. From
+        [tjmahr/notestar\@1e61d1f](https://github.com/tjmahr/notestar/commit/1e61d1f65e7bba7c5c689d3a8c581d65c8bfb7d0)
+        notestar automatically deletes any `bibliography:` lines from
+        the YAML header of the notebook page `.Rmd` file.
 
 8.  Edit `_targets.R` to set the `title`, `author values`, and uncomment
-    the `bibliography`, and `csl` lines.
+    the `bibliography`, and `csl` lines, editing their values if
+    necessary.
 
-    -   Do *not* edit `notebook/index.Rmd` (which contains these
-        values)because it is automatically created by `targets` from the
-        values in `_targets.R`.
+    -   Do *not* edit `notebook/index.Rmd` (which contains these values)
+        because it is automatically created by `targets` from the values
+        in `_targets.R`.
 
 9.  If you are publishing the notebook to GitHub Pages:
 
